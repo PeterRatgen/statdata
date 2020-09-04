@@ -1,2 +1,2 @@
-# statdata
+# Statisktisk dataanalyse
 Statistisk dataanalyse

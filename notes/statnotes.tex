@@ -18,23 +18,27 @@
 
 \begin{document}
 \maketitle
+\newpage
+\tableofcontents
+\newpage
 \section{Uge 36}
 Denne uge er om kapitlet "Introduction to data".
 \subsection{Introduktion til kurset}
 Eksamen er en multiple choice. Undervejs er det tællende aktiviteter.
 
-\subsection{Statistik Metoder}
+\subsection{Statistiske metoder}
 Hvordan indsamler vi data, i forhold til hvad vi skal vide? Har vores data bias?
 Vi har alle sammen bias på en eller anden led. Vi skal gerne lande et sted
 mellem teori, viden og virkelighed. 
 
 Generelt for man svar som man spørger. Hvis man putter urelaterede punkter ind
 og laver regression, får man altid et matematisk svar, men om dette er korrekt
-er ikke relateret til det matematiske. Statistik analyse baseret dig på normalt
-distribueret data, uafhængighed og stor eller lille data størrelse. Ved ikke at
-følge disse principper kan vi drage forkerte konklusioner fra dårlig data. Den
-teoretisk model er korrekt nok, men vi kan ikke drage konklusioner fra dårlig
-data.
+er ikke relateret til den matematiske model man anvender. Statistik analyse
+baserer sig på normalt distribueret data, uafhængighed og stor eller lille
+stikprøvestørrelse. Ved ikke at følge disse principper kan vi drage forkerte
+konklusioner fra dårlig data. Den teoretisk model er korrekt nok, men vi kan
+ikke drage
+konklusioner fra dårlig data.
 
 En normalfordeling er den fine lille klokkekurve, fx højde, IQ, vægt, mv. Når
 man har data nok vil det blive normalfordelt. Generelt set, skal man lave være
@@ -45,7 +49,7 @@ Det er hele præmissen for statetisk.
 \subsection{Arbejde med data}
 Vi skal have en stikprøve. Vi starter med en hypotese. Så skal vi finde en model
 i den statistiske værktøjskasse. Nogengange ligger svære i at finde det rigtige
-værktøj. Så estimerer vi, hvad vi før ud af den model vi har valgt. Mean har
+værktøj. Så estimerer vi, hvad vi før ud af den model vi har valgt. Man har
 selvfølgelig en forventning om hvad der skal komme ud. Derefter evaluerer vi
 resultatet af modelleringen fx. har jeg fået det ud af det jeg forventede?
 
@@ -65,8 +69,13 @@ Vi har forskellige typer af data.
     er et vidst antal år, måneder, dage, timer, sekunder, milisekunder, osv.
   \item Diskret  - numerisk
     \subitem Enkelte tal, fx en karakterrække
+  \item Ordinær - kategorisk,
+    \subitem Kategorisk data har en naturlig orden til sig. I bogen er givet
+    eksemplet med forskellige uddannelsesniveauer, her der forskellige
+    kategorier, men disse kategorier har en bestemt orden mellem sig.
   \item Nominel - kategorisk
-  \item Ordinær - kategorisk
+    \subitem Nominelle variabler er kategoriske, men har ingen særlig orden til
+    sig, modsat ordinære variabler.
 \end{itemize}
 
 Association er ikke det samme som kausalitet. Kausalitet kan kun drages fra

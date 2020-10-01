@@ -166,8 +166,8 @@ væk fra $Q_3$ eller $Q_1$.
 Man må ikke bare smide en outlier væk, uden af tænke over hvorfor man vil smide
 det ud af datasættet. Vi laver et boxplot med
 
-\begin{lstlisting}
-boxplot(airquality$Ozone,
+\begin{lstlisting}[escapeinside={(*}{*)}]
+boxplot(airquality(*\$*)Ozone,
   main = "Some title",
   xlab = "x label",
   ylab = "y label",
@@ -227,7 +227,8 @@ $$P(A \cap B) = P(A) \cdot P(B) $$
 $$P(A \bar B) = \frac{P(A\cap B)}{P(B)} = \frac{P(A) \cdot P(B)}{P(B)} = P(A)$$
 
 \newpage
-\section{Uge 39 - Fordelinger}
+\section{Uge 39 - Fordelinger \\ Fordelinger for stokastiske variable} 
+
 \subsection{Diskrete fordelinger}
 \paragraph{Den hypergeometriske fordeling}
 En diskret fordeling, vores population består af $s$ successer og $N-s$
@@ -267,6 +268,8 @@ endelig population (N) med tilbagelægning.
 \paragraph{F – fordeling}
 \paragraph{$x^2$  - fordeling}
 
+\newpage
 
+\section{Uge 40 - Konfidens og p-tests}
 
 \end{document}

@@ -10,6 +10,7 @@
 \usepackage{graphicx}
 %\usepackage{enumitem}
 \usepackage[a4paper, top = 1in, bottom = 1in, left=1in,right=1in]{geometry}
+\lstset{language=R,basicstyle=\ttfamily}
 
 \title{Statistik og dataanalyse}
 \author{Peter Heilbo Ratgen - perat17@student.sdu.dk}
@@ -20,7 +21,7 @@
 \newpage
 \tableofcontents
 \newpage
-\section{Uge 36}
+\section{Uge 36 - Introduktion til data}
 Denne uge er om kapitlet "Introduction to data".
 \subsection{Introduktion til kurset}
 Eksamen er en multiple choice. Undervejs er det tællende aktiviteter.
@@ -89,6 +90,183 @@ fundet, det gik bedre for børn i hjem med bøger.
   statistikere.
 
 \newpage
-\section{Uge 37}
+\section{Uge 37 - Deskriptiv statistik}
+Deskriptiv statistik er en måde at bearbejde data på, med visualisering og
+nøgletal, som fx varians. Det handler om, hvad kan vi sige om de her tal.
+
+\subsection{Metode}
+\begin{itemize}
+  \item Histogram
+  \item Beregninger
+  \item Konfidensinterval
+  \item Box-plot og undersøgelser af ekstremer
+\end{itemize}
+
+Vi skal ud af en deskriptiv analyse finde, hvad der er typisk. Hvor symmerisk er
+datasættet, hvad er det der afviger fra det man ville forvente, lidt til den ene
+eller anden side i en fordeling af karakterer. Koncentrationen af datasættet,
+mange vil få 4 eller 7, og få vil få 12. Igen, hvad må vi forvente? Er der nogle
+ekstremer i datasættet? 
+
+\subsection{Histogram}
+Man bruger ca. 8 til 12 kolonner på data. Med mindre der er andet der giver
+mening. Vi grupperer kun data, hvis det giver mening. Selv hvis vi har en
+terning med 100 sider, selvom det man får ud er diskret, kan man godt gruppere
+det data. 
+Når en kurve har en hale til venstre, så er den venstreskæv.
+
+
+Vi kan lave et histogram i R.
+
+\begin{lstlisting}
+eksempel <- rnorm(200, mean = 50, sd = 15)
+hist(eksempel, main = "Whats the topic",
+  xlab="name of the variable its",
+  xlim=c(20,90),
+  col="blue")
+\end{lstlisting}
+
+\subsection{Positionsmål}
+
+\begin{itemize}
+  \item Gennemsnit
+    \subitem $$\frac{x_1+x_2+x_3+\dots + x_n}{n}$$
+  \item Modus eller modal?
+    \subitem Den prøve eller prøver der forekommer flest gange. Vi tæller de
+    toppe der forekommer flest gange. Man kan have unimodus, bimodus og
+    multimodus.
+  \item Median
+    \subitem Midten af et datasæt, det er ikke det samme som et gennemsnit.
+  \item 5-punkts opsummering, kvartiler, deciler
+\end{itemize}
+
+\subsection{Variansmål}
+
+\begin{itemize}
+  \item Varians
+    \subitem $$\frac{\sum^{n}_{i=1}x_i - \bar{x}}{n-1}$$
+  \item Standardafvigelse
+    \subitem $$\frac{\sum^{n}_{i=1}x_i - \bar{x}}{n-1}$$
+  \item Normaliseret varians (Standard error) 
+  \item Varianskoefficient
+  \item Inter kvartil interval 
+    \subitem $Q_3 - Q_1$
+  \item Inter decil interval 
+    \subitem $D_9-D_1$
+  \item Skævhed
+    \subitem Symmetri
+  \item Kurtose
+    \subitem Densitet eller koncentration. Ved en høj værdi er data meget tæt.
+\end{itemize}
+
+\subsection{Box-plot}
+Med en boxplot kan vi identificere outliers. En outlier er mere end 3 gange IRQ
+væk fra $Q_3$ eller $Q_1$ (inter quartile range). En mistænkt outlier er 1.5 gange IRQ
+væk fra $Q_3$ eller $Q_1$.
+Man må ikke bare smide en outlier væk, uden af tænke over hvorfor man vil smide
+det ud af datasættet. Vi laver et boxplot med
+
+\begin{lstlisting}
+boxplot(airquality$Ozone,
+  main = "Some title",
+  xlab = "x label",
+  ylab = "y label",
+  col = "orange",
+  horizontal = TRUE
+  )
+\end{lstlisting}
+
+\subsection{Grupperede datasæt}
+Hvis vi laver at histogram i kontinuert data, kan søjlerne røre hinanden. Hvis
+vi laver det med diskret data, skal der gerne være et mellemrum mellem søjlerne.
+Underviseren kan dog ikke finde ud af det selv.
+
+\subsection{Konfidensinterval}
+Det handler om en stikprøve har et gennemsnit, den stikprøve er
+    taget i en population hvis gennemsnit er $\mu$, hvis vi laver en stikprøve
+    hvis gennemsnit er $\bar{x_1}$, en anden stikprøve har gennemsnittet
+    $\bar{x_2}$ og en tredje har gennemsnit $\bar{x_3}$. Gennemsnittet er så 
+    $$\mu = \bar{x} \pm 1.96 - \frac{sd}{\sqrt{n}}  $$ Her er $sd$ standard
+    afvigelsen.
+    
+    \newpage
+\section{Uge 38 - Sandsynlighed}
+\subsection{Hvad er en sandsynlighed}
+Sandsynlighed er hvad er andelen af gange, som udfaldet hænder, hvis vi
+observerer en vilkårlig proces et uendeligt antal gange. Sandsynlighed  er altid
+mellem 0 og 1. For diskrete udfald:
+$$\sum^U_{i=1} P(x_i) = 1 $$
+$$\int^{\infty}_{-\infty} P(x_i) = 1 $$
+
+Når antallet af kast går mod uendeligt, så vil $\hat{p}(x)$ gå mod sandsynlighed
+$P(x)$. Eller $\lim_{n\rightarrow \infty} \hat{p}(x) = P(x)$.
+
+Disjunkte udfald er uafhængige af hinanden. Så ligemeget hvor mange gange man
+kaster en terning har det ikke nogen indflyelse på de andre terningekast. Vi kan
+lægge sansynlighederne for disse hændelser sammen:
+
+$$P(A_1 eller A_2) = A_1 + A_2$$
+
+Hvis vi kigger ikke-disjunkte udfald, altså hvor forskellige sandsynligheder
+påvirker hinanden.
+
+Vi må ikke tælle de samme ting to gange, så vi trækker det der overlapper fra. 
+
+$$P(A) + P(B) - P(A \cap B)$$
+
+Vi har det samlede udfaldsrum $U = \{1, 2, 3,4,5,6\}$.
+Vi definerer en hændelse D, som viser øjnene $D = \{2,3\}$. Dennes
+komplementærmængde er: $D^{-1} = \{1,4,5,6\}$.
+
+\subsection{Betinget sandsynlighed}
+Sandsynligheden for A givet B skrives ved:
+$$P (A \bar B) = \frac{P( A \cup B)}{P(B)}$$ Vi skal huske at vi skal dele med
+sandsynligheden for betingelsen. Hvis de er uafhængige da ved vi
+$$P(A \cap B) = P(A) \cdot P(B) $$
+
+$$P(A \bar B) = \frac{P(A\cap B)}{P(B)} = \frac{P(A) \cdot P(B)}{P(B)} = P(A)$$
+
+\newpage
+\section{Uge 39 - Fordelinger}
+\subsection{Diskrete fordelinger}
+\paragraph{Den hypergeometriske fordeling}
+En diskret fordeling, vores population består af $s$ successer og $N-s$
+fiaskoer. Vi udtrækker vores stikprøve $(n)$ fra en endelig population $(N)$
+Vores stikprøve består af $x$ succeser og $n-x$ fiaskoer Vi benytter uden
+tilbagelægning Fordelingen kræver følgende parametre: $N, n, m$.
+
+
+Den hypergeometriske fordeling kan approksimeres til binomialfordelingen, når
+poppopulationen $N$ er stor, og stikprøven $n$ er lille. Dette brugtes forhen,
+før man brugte computere.
+
+\paragraph{Geometriske fordeling}
+Den stokastiske variable $X$ er Bernouli fordelt, idet vi har to udfald. Enten
+har vi succes, med sandsynligheden $p$, eller fiasko, med sandsynligheden $1-p$.
+$p$ estimereres med:
+
+$$\hat{p} = \frac{\text{antal succeser}}{\text{antal forsøg}}$$
+
+For at kunne anvende dette (Bernouli fordelingen). Skal være $n$ forsøg, der kan
+kune være to udfald, det kræver at man har samme sandsynlighed hver gang og at
+der skal være uafhængighed. 
+
+Den geometriske fordeling er eksponentielt aftagende.
+\paragraph{Binomialfordelingen}
+Vi deler i succes $p$ og fiasko $1-p$. Vi udtrækker vores stikprøve (n) fra en
+endelig population (N) med tilbagelægning.
+
+
+\paragraph{Negativ binomialfordeling}
+\paragraph{Poissonfordelingen}
+
+\subsection{Kontinuerte fordelinger}
+\paragraph{Uniformfordeling}
+\paragraph{Normalfordeling}
+\paragraph{t – fordeling}
+\paragraph{F – fordeling}
+\paragraph{$x^2$  - fordeling}
+
+
 
 \end{document}

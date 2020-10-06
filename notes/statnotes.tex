@@ -196,27 +196,71 @@ Sandsynlighed er hvad er andelen af gange, som udfaldet hænder, hvis vi
 observerer en vilkårlig proces et uendeligt antal gange. Sandsynlighed  er altid
 mellem 0 og 1. For diskrete udfald:
 $$\sum^U_{i=1} P(x_i) = 1 $$
+For kontinuerte udfald:
 $$\int^{\infty}_{-\infty} P(x_i) = 1 $$
 
-Når antallet af kast går mod uendeligt, så vil $\hat{p}(x)$ gå mod sandsynlighed
-$P(x)$. Eller $\lim_{n\rightarrow \infty} \hat{p}(x) = P(x)$.
+Når antallet af kast går mod uendeligt, så vil $\hat{p}(x)$ gå mod
+sandsynligheden $P(x)$. Eller $\lim_{n\rightarrow \infty} \hat{p}(x) = P(x)$.
+Dette kalder vi for Store Tals Lov. 
 
+\paragraph{Disjunkte udfald}
 Disjunkte udfald er uafhængige af hinanden. Så ligemeget hvor mange gange man
 kaster en terning har det ikke nogen indflyelse på de andre terningekast. Vi kan
 lægge sansynlighederne for disse hændelser sammen:
 
-$$P(A_1 eller A_2) = A_1 + A_2$$
+$$P(A_1 \ \text{eller} \ A_2) = A_1 + A_2$$
 
+Så hvis vi har $k$ udfald der er disjunkte, da kan vi:
+$$P(A_1 \ \text{eller} \ A_2 \ \text{eller} \ \dots \ \text{eller} \ A_k) = P(A_1) + P(A_2) + \dots + P(A_k)$$
+\paragraph{Ikke-disjunkte udfald}
 Hvis vi kigger ikke-disjunkte udfald, altså hvor forskellige sandsynligheder
-påvirker hinanden.
+påvirker hinanden. Vi må ikke tælle de samme ting to gange, så vi trækker det
+der overlapper fra. Et eksempel er et kortspil, hvor vi har to hændelser $A$:
+ruder og $B$: billedkort. Her er sandsynlighederne: $$P(A)=\frac{13}{52} =
+\frac{1}{4}$$ $$P(B) = \frac{12}{52} = \frac{3}{13}$$. Da begivenhederne ikke er
+uafhængige kan vi ikke bare: $\frac{13}{52} + \frac{12}{52} = \frac{25}{52}$.
+Dette er da vi tæller rudernes billedkort med to gange. Vi skal finde
+fællesmængden, denne skrives som: $P(A \cap B) = \frac{3}{52}$. Denne skal du
+trækkes fra. 
+$$P(A) + P(B) - P(A\cap B) = \frac{13}{52} + \frac{12}{52} - \frac{3}{52} =
+\frac{13+12-3}{52}=\frac{22}{52} = \frac{11}{26}$$
 
-Vi må ikke tælle de samme ting to gange, så vi trækker det der overlapper fra. 
+\paragraph{Sandsynlighedsfordelinger}
+En sandsynlighedsfordeling er en tabel med alle disjunkte udfald og deres
+tilhørende sandsynligheder. Reglerne for en sandsynlighedsfordeling er at:
+\begin{itemize}
+  \item Udfaldet, som skal være disjunkt skal kunne listes
+  \item Hvor sandsynlighed må ligge mellem 0 og 1
+  \item Summen af sandsynlighederne må være 1
+\end{itemize}
 
-$$P(A) + P(B) - P(A \cap B)$$
+\paragraph{Komplementærmægde}
+Vi har det samlede udfaldsrum $U = \{1, 2, 3,4,5,6\}$.  Vi definerer en hændelse
+D, som viser øjnene $D = \{2,3\}$. Dennes komplementærmængde er: $D^{C} =
+\{1,4,5,6\}$. Hvis vi har en sandsynlighed $P(D) = \frac{1}{3}$, da er
+komplementærmængden $$P(D^C) = 1 - P(D) = 1 - \frac{1}{3} = \frac{2}{3}$$
 
-Vi har det samlede udfaldsrum $U = \{1, 2, 3,4,5,6\}$.
-Vi definerer en hændelse D, som viser øjnene $D = \{2,3\}$. Dennes
-komplementærmængde er: $D^{-1} = \{1,4,5,6\}$.
+\paragraph{Uafhængige hændelser}
+Ved uafhængige hændelser påvirker sandsynlighederne for hændelse 1 og 2 ikke
+hinanden. Fx påvirker to terningekast ikke hinanden. Hvis vi tre terninger, en
+rød, blå og hvid. Sandsynligheden for at alle tre terninger viser 6 er:
+$$P(\text{rød terning} \ =6)P(\text{blå terning} \ =6)P(\text{hvid terning} \
+=6) = \frac{1}{6}\cdot \frac{1}{6} \cdot\frac{1}{6}$$.
+En generel regel er:
+$$P(A_1 \cap A_2 \cap \dots \cap A_k = P(A_1) \cdot P(A_2) \cdot \dots \cdot
+P(A_k) $$
+
+\paragraph{Forenet sandsynlighed}
+\begin{table}[H]
+  \centering
+  \begin{tabular}{l|l|l|l}
+                       & Sandt  &           &        \\\hline
+                                          & Mode   & Ikke mode & Total  \\\hline
+    Forudsigelse\_mode & 0.1081 & 0.0121    & 0.1202 \\\hline
+    Forudsigelse\_nej  & 0.0615 & 0.8183    & 0.8798 \\\hline
+    Total              & 0.1696 & 0.8304    & 1.0   
+  \end{tabular}
+\end{table}
 
 \subsection{Betinget sandsynlighed}
 Sandsynligheden for A givet B skrives ved:

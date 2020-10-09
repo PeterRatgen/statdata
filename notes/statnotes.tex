@@ -8,6 +8,8 @@
 \usepackage{color}
 \usepackage{listings}
 \usepackage{graphicx}
+\usepackage{pdfpages}
+\usepackage{booktabs}
 %\usepackage{enumitem}
 \usepackage[a4paper, top = 1in, bottom = 1in, left=1in,right=1in]{geometry}
 \lstset{language=R,basicstyle=\ttfamily}
@@ -271,5 +273,40 @@ endelig population (N) med tilbagelægning.
 \newpage
 
 \section{Uge 40 - Konfidens og p-tests}
+
+\section{Uge 41 - Tests II}
+
+
+
+\section{Øvelser - Uge 37}
+\subsection{Opgave 1}
+Præsentationen af et normalfordelt datasæt med 500 observationer. En middelværdi
+på 70 og en standardafvigelse 15.
+\begin{figure}[H] 
+  \centering
+  \includegraphics[width=0.5\textwidth]{../velser/uge37/R/opg1.pdf}
+\end{figure}
+
+\subsection{Opgave 2}
+Vi har sat vores datasæt ind i R. Vi skal lave en beskrivende statetisk. Den
+beskrivende statistik går ud på:
+\begin{itemize}
+  \item Opsætning af et histogram eller en tidsserie.
+  \item Udregning af beskrivende statetiskker.
+  \item Opsætning af et konfidensinterval
+  \item Opsætning af et boxplot og undersøgelse af eventuelle outliers.
+\end{itemize}
+
+\paragraph{Tidsserie} Dette en tidsserie over antal kunder i butikken.
+
+\begin{figure}[H] 
+  \centering
+  \includegraphics[width=0.5\textwidth]{../velser/uge37/R/opg2.pdf}
+\end{figure}
+Tidsserien viser at antallet af kunder per dag. Dette viser at antallet af
+kunder svinger meget fra dag til dag.
+
+\paragraph{Beskrivende statetiskker}
+
 
 \end{document}

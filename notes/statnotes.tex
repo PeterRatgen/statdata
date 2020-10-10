@@ -252,8 +252,9 @@ En generel regel er:
 $$P(A_1 \cap A_2 \cap \dots \cap A_k = P(A_1) \cdot P(A_2) \cdot \dots \cdot
 P(A_k) $$
 
-\paragraph{Forenet sandsynlighed}
-\begin{table}[H]
+\paragraph{Marginale sandsynligheder}.
+
+\begin{table}[h]
   \centering
   \begin{tabular}{l|l|l|l|l}
    &                    & Sandt  &           &        \\\hline
@@ -263,6 +264,7 @@ P(A_k) $$
    & Total              & 309 & 1513    & 1822   
   \end{tabular}
 \end{table}
+
 Sandsynligheder
 
 \begin{table}[H]
@@ -270,14 +272,25 @@ Sandsynligheder
   \begin{tabular}{l|l|l|l|l}
    &                    & Sandt  &           &        \\\hline
    &                                       & Mode   & Ikke mode & Total  \\\hline
-   machine\_learning & Forudsigelse\_mode & 0.1081 & 0.0121    & 0.1202 \\\hline
-   & Forudsigelse\_nej  & 0.0615 & 0.8183    & 0.8798 \\\hline
+   machine\_learning & mode & 0.1081 & 0.0121    & 0.1202 \\\hline
+   & nej  & 0.0615 & 0.8183    & 0.8798 \\\hline
    & Total              & 0.1696 & 0.8304    & 1.0   
   \end{tabular}
 \end{table}
 
 \subsection{Betinget sandsynlighed}
-Sandsynligheden for A givet B skrives ved:
+Vi finder sandsynligheden for at det er mode givet at machine-learning har sagt
+at det er mode.
+
+$$P(\text{mode givet machine\_learning.mode}) = \frac{197}{219} = 0.9$$
+$$P(\text{mode $|$ machine\_learning.mode}) = \frac{197}{219} = 0.9$$
+
+Vi kan se at det er det samme som:
+$$P(\text{mode $|$ machine\_learning.mode}) = \frac{197}{219} =
+\frac{\frac{197}{1822}}{\frac{219}{1822}} = \frac{P(\text{mode $\cap$
+machine\_learning.mode})}{P(\text{machine\_learning.mode})} $$
+
+Mere generelt kan vi skrive at sandsynligheden for A givet B skrives ved:
 $$P (A \bar B) = \frac{P( A \cup B)}{P(B)}$$ Vi skal huske at vi skal dele med
 sandsynligheden for betingelsen. Hvis de er uafhængige da ved vi
 $$P(A \cap B) = P(A) \cdot P(B) $$
@@ -340,7 +353,7 @@ Præsentationen af et normalfordelt datasæt med 500 observationer. En middelvæ
 på 70 og en standardafvigelse 15.
 \begin{figure}[H] 
   \centering
-  \includegraphics[width=0.5\textwidth]{../velser/uge37/R/opg1.pdf}
+  \includegraphics[width=0.5\textwidth]{../velser/uge37/R/plot.pdf}
 \end{figure}
 
 \subsection{Opgave 2}
@@ -355,14 +368,101 @@ beskrivende statistik går ud på:
 
 \paragraph{Tidsserie} Dette en tidsserie over antal kunder i butikken.
 
-\begin{figure}[H] 
-  \centering
-  \includegraphics[width=0.5\textwidth]{../velser/uge37/R/opg2.pdf}
-\end{figure}
-Tidsserien viser at antallet af kunder per dag. Dette viser at antallet af
-kunder svinger meget fra dag til dag.
 
 \paragraph{Beskrivende statetiskker}
+De beskrivende statetiskker er:
+\begin{itemize}
+  \item Gennemsnit
+    \subitem Gennemsnit: 69.56667
+  \item Standardafvigelse
+    \subitem $SE = \frac{\sigma}{\sqrt{n}}= \frac{15.47787}{\sqrt{30}}  = 2.825859$
+  \item Median
+  \subitem 72
+  \item Spredning
+    \subitem 15.47787
+  \item Varians
+    \subitem 239.5644
+  \item Skævhed
+    \subitem Histogrammet er venstreskæv.
+  \item Min, max og kvartilsæt
+    \subitem Min. 28.00 \\
+    Første kvartil 60.75 \\
+    Median  72.00 \\
+    Mean 69.57 \\  
+    Tredje kvartil 80.25 \\ 
+    Max.  98.00                                                 
+  \item Sum
+    \subitem 2087
+  \item Konfidensinterval 95\% 
+    \subitem
+ \lstinline|error <- qnorm(0.975)*sd(kunder)/sqrt(length(kunder))|
+ $$mean-error =  64.02808$$
+ $$mean+error = 75.10525$$
+\end{itemize}
 
+\paragraph{Grafisk afbildning}
+\begin{figure}[H] 
+  \centering
+  \includegraphics[width=0.5\textwidth]{../velser/uge37/R/opg2plot.pdf}
+\end{figure}
+Det viser et histogram der er højreskæv. Det mest almindelige antal kunder er
+mellem 70 og 80.
+
+\paragraph{Opsummeringen}
+\begin{itemize}
+  \item Min, max og kvartilsæt
+  \subitem Min. 28.00 \\
+    Første kvartil 60.75 \\
+    Median  72.00 \\
+    Mean 69.57 \\  
+    Tredje kvartil 80.25 \\ 
+    Max.  98.00                                                 
+  \item Inter kvartilsæt
+    \subitem 80.25-60.75=19.5
+\end{itemize}
+
+\begin{figure}[H] 
+  \centering
+  \includegraphics[width=0.5\textwidth]{../velser/uge37/R/opg2plot.pdf}
+\end{figure}
+
+\subsection{Opgave 3}
+Det gennemsnitlige antal korrekte svar er: 
+\begin{lstlisting}[language=R]
+@> mean(sum(korrekte * korrektesvar)/sum(korrektesvar))
+[1] 7.906411
+\end{lstlisting}
+Standardafvigelsen for antallet af korrekte svar.
+\begin{lstlisting}[language=R]
+@> sd(korrektesvar)
+[1] 1002.314
+\end{lstlisting}
+
+\paragraph{Fordelingens udseende}
+
+\begin{figure}[H] 
+  \centering
+  \includegraphics[width=0.5\textwidth]{../velser/uge37/R/opg3plot.pdf}
+\end{figure}
+
+Fordelingen af korrekte svar er normalfordelt. Med en standardafvigelse på
+1002.31.
+
+
+\subsection{Opgave 4}
+
+\begin{lstlisting}
+@> mean(opkaldstid)
+[1] 7.023529
+@> summary(opkaldstid)
+   Min. 1st Qu.  Median    Mean 3rd Qu.    Max.
+  5.500   6.625   7.200   7.024   7.575   8.400
+\end{lstlisting}
+
+
+\begin{figure}[H] 
+  \centering
+  \includegraphics[width=0.5\textwidth]{../velser/uge37/R/opg4plot.pdf}
+\end{figure}
 
 \end{document}

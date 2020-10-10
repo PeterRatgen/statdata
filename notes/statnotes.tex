@@ -353,7 +353,7 @@ Præsentationen af et normalfordelt datasæt med 500 observationer. En middelvæ
 på 70 og en standardafvigelse 15.
 \begin{figure}[H] 
   \centering
-  \includegraphics[width=0.5\textwidth]{../velser/uge37/R/opg1.pdf}
+  \includegraphics[width=0.5\textwidth]{../velser/uge37/R/plot.pdf}
 \end{figure}
 
 \subsection{Opgave 2}
@@ -368,14 +368,101 @@ beskrivende statistik går ud på:
 
 \paragraph{Tidsserie} Dette en tidsserie over antal kunder i butikken.
 
-\begin{figure}[H] 
-  \centering
-  \includegraphics[width=0.5\textwidth]{../velser/uge37/R/opg2.pdf}
-\end{figure}
-Tidsserien viser at antallet af kunder per dag. Dette viser at antallet af
-kunder svinger meget fra dag til dag.
 
 \paragraph{Beskrivende statetiskker}
+De beskrivende statetiskker er:
+\begin{itemize}
+  \item Gennemsnit
+    \subitem Gennemsnit: 69.56667
+  \item Standardafvigelse
+    \subitem $SE = \frac{\sigma}{\sqrt{n}}= \frac{15.47787}{\sqrt{30}}  = 2.825859$
+  \item Median
+  \subitem 72
+  \item Spredning
+    \subitem 15.47787
+  \item Varians
+    \subitem 239.5644
+  \item Skævhed
+    \subitem Histogrammet er venstreskæv.
+  \item Min, max og kvartilsæt
+    \subitem Min. 28.00 \\
+    Første kvartil 60.75 \\
+    Median  72.00 \\
+    Mean 69.57 \\  
+    Tredje kvartil 80.25 \\ 
+    Max.  98.00                                                 
+  \item Sum
+    \subitem 2087
+  \item Konfidensinterval 95\% 
+    \subitem
+ \lstinline|error <- qnorm(0.975)*sd(kunder)/sqrt(length(kunder))|
+ $$mean-error =  64.02808$$
+ $$mean+error = 75.10525$$
+\end{itemize}
 
+\paragraph{Grafisk afbildning}
+\begin{figure}[H] 
+  \centering
+  \includegraphics[width=0.5\textwidth]{../velser/uge37/R/opg2plot.pdf}
+\end{figure}
+Det viser et histogram der er højreskæv. Det mest almindelige antal kunder er
+mellem 70 og 80.
+
+\paragraph{Opsummeringen}
+\begin{itemize}
+  \item Min, max og kvartilsæt
+  \subitem Min. 28.00 \\
+    Første kvartil 60.75 \\
+    Median  72.00 \\
+    Mean 69.57 \\  
+    Tredje kvartil 80.25 \\ 
+    Max.  98.00                                                 
+  \item Inter kvartilsæt
+    \subitem 80.25-60.75=19.5
+\end{itemize}
+
+\begin{figure}[H] 
+  \centering
+  \includegraphics[width=0.5\textwidth]{../velser/uge37/R/opg2plot.pdf}
+\end{figure}
+
+\subsection{Opgave 3}
+Det gennemsnitlige antal korrekte svar er: 
+\begin{lstlisting}[language=R]
+@> mean(sum(korrekte * korrektesvar)/sum(korrektesvar))
+[1] 7.906411
+\end{lstlisting}
+Standardafvigelsen for antallet af korrekte svar.
+\begin{lstlisting}[language=R]
+@> sd(korrektesvar)
+[1] 1002.314
+\end{lstlisting}
+
+\paragraph{Fordelingens udseende}
+
+\begin{figure}[H] 
+  \centering
+  \includegraphics[width=0.5\textwidth]{../velser/uge37/R/opg3plot.pdf}
+\end{figure}
+
+Fordelingen af korrekte svar er normalfordelt. Med en standardafvigelse på
+1002.31.
+
+
+\subsection{Opgave 4}
+
+\begin{lstlisting}
+@> mean(opkaldstid)
+[1] 7.023529
+@> summary(opkaldstid)
+   Min. 1st Qu.  Median    Mean 3rd Qu.    Max.
+  5.500   6.625   7.200   7.024   7.575   8.400
+\end{lstlisting}
+
+
+\begin{figure}[H] 
+  \centering
+  \includegraphics[width=0.5\textwidth]{../velser/uge37/R/opg4plot.pdf}
+\end{figure}
 
 \end{document}

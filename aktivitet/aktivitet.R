@@ -21,6 +21,8 @@ for (i in 1:length(co2$CO2)) {
   }
 }
 
+# Deskriptiv analyse
+#standardafvigelse
 sd(co2$CO2)
 summary(co2$CO2)
 

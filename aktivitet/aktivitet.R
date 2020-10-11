@@ -24,10 +24,6 @@ for (i in 1:length(co2$CO2)) {
 sd(co2$CO2)
 summary(co2$CO2)
 
-#standardafvigelse
-sd(co2$CO2)/length(co2$CO2)
-
-
-
-
-
+#standard error
+sd(co2$CO2) / length(co2$CO2)
+var(co2$CO2)

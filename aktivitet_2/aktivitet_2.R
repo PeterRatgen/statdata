@@ -15,3 +15,5 @@ dev.off()
 # Opsummering af data
 summary(record[2])
 sd(unlist(record[2]))
+
+r <- rnorm(500, mean = 78754, sd = 55608.07)

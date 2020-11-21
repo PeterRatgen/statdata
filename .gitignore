@@ -1,3 +1,5 @@
+.DS_Store
+Session.vim
 ## Core latex/pdflatex auxiliary files:
 *.aux
 *.lof

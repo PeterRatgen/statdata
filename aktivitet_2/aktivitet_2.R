@@ -51,21 +51,58 @@ plot(record$CAREDAYS, record$TREATCOST, pch = 19, xlab = "Dage brugt på hospita
 abline(lm(record$TREATCOST~record$CAREDAYS), col = "blue")
 dev.off()
 
+plot(record$CAREDAYS, record$TREATCOST)
 
 linearModel <-lm(record$TREATCOST~record$CAREDAYS)
-
-
 summary(linearModel)
 
 pdf("plots/caredaysResiduals.pdf", width = 10, height = 8)
 plot(linearModel$residuals)
 dev.off()
 
-
-lm(TREATCOST~MEDICINE+LAB+XRAY+INHALATOR+STATUS+CAREDAYS+INTENSIVEDAYS+AGE+GENDER+INSURANCE, data = record)
+library(ggcorrplot)
 
 corretlationMatrix <- cor(record[,c(2:12)])
-round(corretlationMatrix, 2)
+corretlationMatrix = round(corretlationMatrix, 2)
+
+pdf("plots/corretlationMatrix.pdf", width = 10, height = 10)
+ggcorrplot(corretlationMatrix, type = "lower",  lab = TRUE)
+dev.off()
+
+pdf("./plots/elim1.pdf", width = 10, height = 10)
+# fulde model R2_adj 0.8859
+elim1 <- lm(TREATCOST~MEDICINE+LAB+XRAY+INHALATOR+STATUS+CAREDAYS+INTENSIVEDAYS+AGE+GENDER+INSURANCE, data = record)
+plot(elim1$residuals)
+dev.off()
+summary(elim1)
+
+elim2 <- lm(TREATCOST~MEDICINE+LAB+XRAY+INHALATOR+CAREDAYS+INTENSIVEDAYS+AGE+GENDER+INSURANCE, data = record)
+plot(elim2$residuals)
+summary(elim2)
+# status 0.8867
+
+elim3 <- lm(TREATCOST~MEDICINE+LAB+XRAY+INHALATOR+CAREDAYS+INTENSIVEDAYS+GENDER+INSURANCE, data = record)
+plot(elim3$residuals)
+summary(elim3)
+# AGE 0.8874
+
+pdf("./plots/elim4.pdf", width = 10, height = 10)
+elim4 <- lm(TREATCOST~MEDICINE+LAB+XRAY+INHALATOR+CAREDAYS+INTENSIVEDAYS+INSURANCE, data = record)
+plot(elim4$residuals)
+dev.off()
+summary(elim4)
+# GENDER 0.888
+
+
+inregion <- record[,c(6,13)]
+print(inregion)
+
+region1 <- subset(inregion, REGION == 1)
+region2 <- subset(inregion, REGION == 2)
+region3 <- subset(inregion, REGION == 3)
+
+hist(region1$INHALATOR)
+
 
 
 

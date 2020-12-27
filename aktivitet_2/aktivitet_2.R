@@ -15,31 +15,31 @@ dev.off()
 # Opsummering af data
 summary(record[2])
 sd(unlist(record[2]))
+var(unlist(record[2]))
+se <- sd(unlist(record[2]))/sqrt(length(unlist(record[2])))
+print(se)
 
+boxplot()
+
+pdf("plots/costboxplot.pdf", width = 10, height = 4)
+boxplot(record[2], main = "Omkostning for behandling per patient i kr."
+        , col = "blue", horizontal = TRUE
+        , xlab = "Kroner"
+        , ylab = "TREATCOST", boxwex = 1.5)
+dev.off()
 treatMean = mean(unlist(record[2]))
 treatSd = sd(unlist(record[2]))
 
-error = qnorm(0.95)*treatSd/sqrt(length(unlist(record[2])))
+error = qnorm(0.975)*treatSd/sqrt(length(unlist(record[2])))
 
 #venstre
 treatMean - error
 #højre
 treatMean+error
 
-# sandsynligheden for at en behandling koster over 95000 kr
-# dette er den teoretiske sandsynlighed 
-under95k  <- 1- pnorm(q = 95000, mean = treatMean, sd = treatSd)
+underOver <- (sum(record$TREATCOST < 40000) + sum(record$TREATCOST > 65000))/length(record$TREATCOST)
 
-# sandsynligheden for at en behandling koster over 95K
-sum(record$TREATCOST > 95000)/length(record$TREATCOST)
-
-
-under40K <- sum(record$TREATCOST < 40000)/length(record$TREATCOST)
-over65K <- sum(record$TREATCOST < 65000)/length(record$TREATCOST)
-
-# den endelige sandsynlighed
-1 - under40K - over65K
-
+1 - underOver
 
 #overblik over data
 pdf("plots/caredaysScatterPlot.pdf", width = 10, height = 8)
@@ -59,6 +59,12 @@ summary(linearModel)
 pdf("plots/caredaysResiduals.pdf", width = 10, height = 8)
 plot(linearModel$residuals)
 dev.off()
+
+
+pdf("plots/caredaysResidualsHist.pdf", width = 10, height = 8)
+hist(linearModel$residuals)
+dev.off()
+
 
 library(ggcorrplot)
 
@@ -101,9 +107,22 @@ region1 <- subset(inregion, REGION == 1)
 region2 <- subset(inregion, REGION == 2)
 region3 <- subset(inregion, REGION == 3)
 
-hist(region1$INHALATOR)
 
+pdf("plots/anovaboxplot.pdf", width = 7, height = 14)
+boxplot(INHALATOR~REGION, data=record,
+  height = 12, 
+  names = c("Region Hovedstaden", "Region Midtjylland", "Region Syddanmark"))
+dev.off()
 
+library(dplyr)
+group_by(record["INHALATOR"], record["REGION"])%>%
+  summarize(
+    count = n(),
+    mean = mean(INHALATOR),
+    sd = sd(INHALATOR),
+    var = var(INHALATOR)
+  )
 
-
-
+Anova <- aov(INHALATOR~REGION, data = record)
+summary(Anova)
+plot(Anova$residuals)

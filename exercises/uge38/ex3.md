@@ -62,3 +62,8 @@ hændelse.
 
 Hvis fordelingen for Kobes' streak ligner den simulerede, da er Kobes' streak
 en uafhængig hændelse.
+
+Hvis vi kigger på de to fordelinger, da ses det at de ligner hinanden. De er
+begge højreskæve og har begge én top (mode).
+Hvis Kobe havde en varm hånd, da ville formentlig ikke se et så stort drop off
+mellem 1 og 2 mål i stræk.

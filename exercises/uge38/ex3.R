@@ -17,7 +17,7 @@ calc_steak <- function(dataset){
   return(vec) 
 }
 
-kobe_streak <- calc_steak(kobe$basket)
+kobe_streak <- calc_streak(kobe$basket)
 table(kobe_streak)
 pdf("kobe_barplot.pdf", width = 10, height = 10)
 barplot(table(kobe_streak))
@@ -25,8 +25,9 @@ dev.off()
 
 outcomes <- c("H", "M")
 sim_basket <- sample(outcomes, size = 133, replace = TRUE, prob = c(0.45,0.55))
-table(calc_steak(sim_basket))
+table(calc_streak(sim_basket))
 pdf("sim_barplot.pdf", width = 10, height = 10)
 barplot(table(calc_steak(sim_basket)))
+hist(table(calc_streak(sim_basket)))
 dev.off()
 

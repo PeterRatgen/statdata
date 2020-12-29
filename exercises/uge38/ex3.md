@@ -13,3 +13,12 @@ sættet.
 **Opgave 1**  
 I en streaklængde på én er det et mål og en misser. Med en streaklængde på nul
 er der én misser.
+
+**Opgave 2**  
+Den typiske streaklængde er på 0. Den længste streaklængde er på 4.
+
+**Opgave 3**  
+Med en fair mønt får vi: 
+`H:59, M:41`   
+Med en unfair mønt får vi:
+` H:26, M:74`

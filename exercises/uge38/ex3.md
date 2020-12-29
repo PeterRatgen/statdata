@@ -22,3 +22,21 @@ Med en fair mønt får vi:
 `H:59, M:41`   
 Med en unfair mønt får vi:
 ` H:26, M:74`
+
+**Opgave 1**
+
+Vi skal lave en simulering af en scoringsprocent på $0.45\%$. Dette må betyde at
+der er en chance for at $H: 0.45$ og $M: 0.55$.
+
+Kobe's streak:  
+<img src="./kobe_barplot.png" width=400px/>
+
+Streak of the simulation:  
+<img src="./sim_barplot.png" width=400px/>
+
+Det typiske antal mål for den uafhængige spller er også 0. Det gennemsnitlige
+antal mål for denne uafhængige spiller er: $133*0.45 = 59.85$ mål.*
+
+**Opgave 2**  
+Hvis vi kørte simuleringen en anden gang, ville vi forvente at få noget der
+minder om den samme fordeling som den første, dog ikke nøjagtig det samme.

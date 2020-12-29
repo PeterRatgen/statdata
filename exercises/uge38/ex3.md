@@ -40,3 +40,25 @@ antal mål for denne uafhængige spiller er: $133*0.45 = 59.85$ mål.*
 **Opgave 2**  
 Hvis vi kørte simuleringen en anden gang, ville vi forvente at få noget der
 minder om den samme fordeling som den første, dog ikke nøjagtig det samme.
+
+**Opgave 3**  
+Forudsætningen for om Kobe har en varm hånd er at:  
+$P(\text{skud}\ 1 = 1) = 0.45$  
+$P(\text{skud}\ 2=1 |\text{skud}\ 1= 1) = 0.60$  
+, dermed at vi har større chance for at score det næste mål, når vi har scoret
+det første. 
+
+Hvis teorien om den varme hånd ikke holder vil:  
+$P(\text{skud}\ 1 = 1) = 0.45$  
+$P(\text{skud}\ 2=1 |\text{skud}\ 1= 1) = 0.45$.  
+Dette betyder at når Kobe har scoret et mål, hvis chancen for at han scorer det
+næste være lige så stort som chancen for det første. Hvis dette er tilfældet, er
+hændelserne uafhængige. Vi har de to fordelinger, Kobe og den simulerede. Den
+simulerede kan udfaldet blive `"H"` eller `"M"`. Når der simuleres er disse
+uafhængige hændelser med en bestemt sandsynlighed for et givent udfald. 
+
+Hvis Kobe har en varm hånd, er det som tidligere omtalt ikke en uafhængig
+hændelse. 
+
+Hvis fordelingen for Kobes' streak ligner den simulerede, da er Kobes' streak
+en uafhængig hændelse.

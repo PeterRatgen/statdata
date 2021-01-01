@@ -36,6 +36,9 @@ qqline(sim_norm)
 dev.off()
 
 
+pdf("normal_fhgt_multiplefit.pdf", height = 10, width = 10)
+qqnormsim(fdims$hgt)
+dev.off()
 
 fwgtmean <- mean(fdims$wgt)
 fwgtsd  <- sd(fdims$wgt)
@@ -51,3 +54,20 @@ pdf("normal_fwgt_fit.pdf", height = 10, width = 10)
 qqnorm(fdims$wgt)  
 qqline(fdims$wgt)  
 dev.off()
+
+pdf("normal_fwgt_multiplefit.pdf", height = 10, width = 10)
+qqnormsim(fdims$wgt)
+dev.off()
+
+1 - (pnorm(q = 182, mean = fhgtmean, sd = fhgtsd))
+
+sum(fdims$hgt > 182) / length(fdims$hgt)
+
+qqnorm(fdims$elb.di)  
+qqline(fdims$elb.di)  
+
+qqnorm(fdims$age)  
+qqline(fdims$age)  
+
+qqnorm(fdims$che.de)  
+qqline(fdims$che.de)  

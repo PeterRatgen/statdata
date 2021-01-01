@@ -7,3 +7,35 @@ Vi har to histogrammer, et over kvinders, og et over mænds højde.
 <img width="500px" src="./mdims_height.png"/>  
 Begge histogrammer har en klokkeform. De er hverken venstre- eller højreskæv.
 Dette tyder på at dataen vi har er normalfordelt.
+
+Vi lægger en kurve hen over fordelingen:
+<img width="500px" src="./normal_fhgt.png"/> Her ligner det at data følger en
+normal fordeling.
+
+Vi vil gerne finde ud af om data egentlig er normalfordelt, dette vil vi gerne
+kunne kvantificere. Hvis punkter tæt følger linjen, vil det være normalfordelt.
+<img width="500px" src="./normal_fhgt_fit.png"/>  
+Som beskrevet, er halerne ikke så tætte på linjen. Så vi må stille spørgsmålet
+om hvornår er punkterne tæt nok på denne linje til at vi kan kalde data
+normalfordelt.
+
+Vi kan generere en vektor af normalfordelte værdier baseret på lænden af det
+datasæt vi vil sammenligne med, samt standardafvigelse og spredning. Med denne
+data laver vi et sandsynlighedsdiagram som det lige ovenfor.
+<img width="500px" src="./sim_fhgt_fit.png"/>  
+Her vi se at disse ligner hinanden, næsten til forveksling. Den ene hale på den
+simulerede er dog lidt tættere, end den observede. Ud fra dette kan vi lave en
+klar vurdering af at højden for kvinder er normalfordelt.
+
+**Normal fordeling af kvinders vægt**
+
+Først viser vi et tæthedshistrogram med tilhørende tæthedsfunktion.
+For at oprette y værdierne bruger vi dnorm til at beregne tætheden af hver af
+disse x-værdier i en fordeling, der er normalfordelt med middelværdien fra 
+og standardafvigelse fhgtsd. 
+<img width="500px" src="./normal_fwgt.png"/>  
+Når man kigger på histogrammet, ses at data har en klokkeform. Der er dog nogle
+outliers.
+<img width="500px" src="./normal_fwgt_fit.png"/>  
+Når man kigger på sandsynlighedsdiagramet, ses det at data ikke følger linjen,
+særligt omkring halerne.

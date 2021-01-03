@@ -1,0 +1,82 @@
+\documentclass{article}
+
+\usepackage[utf8]{inputenc}
+\usepackage[danish]{babel}
+\usepackage{float}
+\usepackage{fancyhdr}
+\usepackage{amsmath}
+\usepackage{color}
+\usepackage{listings}
+\usepackage{graphicx}
+\usepackage{pdfpages}
+\usepackage{booktabs}
+\usepackage{listingsutf8}
+%\usepackage{enumitem}
+\usepackage[a4paper, top = 1in, bottom = 1in, left=1in,right=1in]{geometry}
+\hfuzz=50.002pt 
+\title{Multipel regression}
+\author{Peter Heilbo Ratgen}
+\date{\today}
+
+\begin{document}
+\maketitle
+
+Vi har vores regression:
+\begin{lstlisting}[basicstyle=\ttfamily, language=R, keywordstyle=\color{blue}\bfseries, rulecolor=\color{black}]
+fit <- lm(Imp~MS+GDP+USD+Interest_Rent, data=dat)
+summary(fit)
+@> summary(fit)
+
+Call:
+lm(formula = Imp ~ MS + GDP + USD + Interest_Rent, data = dat)
+
+Residuals:
+       1        2        3        4        5        6        7        8        9       10
+-0.01811 -0.58021 -0.17861  0.47967  0.36234  0.29555  0.82810 -1.62710  0.82139 -0.38302
+
+Coefficients:
+               Estimate Std. Error t value Pr(>|t|)
+(Intercept)    78.86721  112.71893   0.700  0.51533
+MS             -0.01965    0.73298  -0.027  0.97965
+GDP             0.44565    0.08984   4.961  0.00425 **
+USD            -1.12241    1.49887  -0.749  0.48767
+Interest_Rent  -8.26347   10.25854  -0.806  0.45710
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+
+Residual standard error: 0.9972 on 5 degrees of freedom
+Multiple R-squared:  0.9918,    Adjusted R-squared:  0.9853
+F-statistic:   152 on 4 and 5 DF,  p-value: 2.091e-05
+\end{lstlisting}
+
+Vi reducerer modellen, siden den bedste ikke nødvendigvis er den største. Dermed
+vil vi finde den model der forklarer data bedst.
+
+Vi ender med modellen:
+\begin{lstlisting}[inputencoding=utf8/latin1,basicstyle=\ttfamily, language=R, keywordstyle=\color{blue}\bfseries, rulecolor=\color{black}]
+@> fit <- lm(Imp~GDP+Interest_Rent, data=dat)
+@> summary(fit)
+
+Call:
+lm(formula = Imp ~ GDP + Interest_Rent, data = dat)
+
+Residuals:
+     Min       1Q   Median       3Q      Max
+-1.86205 -0.14718 -0.01399  0.49931  0.96762
+
+Coefficients:
+              Estimate Std. Error t value Pr(>|t|)
+(Intercept)   70.30293    7.70310   9.127 3.89e-05 ***
+GDP            0.43748    0.02061  21.223 1.30e-07 ***
+Interest_Rent -8.20412    0.77713 -10.557 1.50e-05 ***
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+
+Residual standard error: 0.9035 on 7 degrees of freedom
+Multiple R-squared:  0.9906,    Adjusted R-squared:  0.9879
+F-statistic: 369.9 on 2 and 7 DF,  p-value: 7.976e-08
+\end{lstlisting}
+
+
+\end{document}
+
